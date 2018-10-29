@@ -1,0 +1,7 @@
+{
+  "name": "AirPollutionMeter",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

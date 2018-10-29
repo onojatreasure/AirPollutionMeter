@@ -1,0 +1,105 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button menuToggle ion-button icon-only style="color:white">
+        <ion-icon name="ios-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>AIR POLLUTION Meter</ion-title>
+    <ion-buttons end>
+      
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="meters">
+
+  <div class="smog" style="background:url(assets/imgs/clouds.png) 25% 100% repeat-x">
+  </div>
+  <div class="pollution-back" >
+    <ion-icon name="ios-nuclear-outline" class="pollution-sign"></ion-icon>
+    <div class="pollution-time">TODAY</div>
+    <div class="pollution-value">{{meters.data.current.pollution.aqius}}</div>
+    <p style="margin-top: -14px;">US aqi</p>
+    <p class= "aqi-status" *ngIf="(meters.data.current.pollution.aqius >= 0)&&(meters.data.current.pollution.aqius < 51)"><strong> Good </strong></p>
+    <p *ngIf="(meters.data.current.pollution.aqius >= 51)&&(meters.data.current.pollution.aqius < 101)"> Moderate </p>
+    <p *ngIf="(meters.data.current.pollution.aqius >= 101)&&(meters.data.current.pollution.aqius < 151)"> Unhealthy for Sensitive Groups</p>
+    <p *ngIf="(meters.data.current.pollution.aqius >= 151)&&(meters.data.current.pollution.aqius < 201)"> Unhealthy </p>
+    <p *ngIf="(meters.data.current.pollution.aqius >= 201)&&(meters.data.current.pollution.aqius < 301)"> Very Unhealthy </p>
+    <p *ngIf="meters.data.current.pollution.aqius >= 301"> Hazardous </p>
+
+    <div class="aqi-extra" padding style="left:0; top: 2em">
+      {{meters.data.city}}
+    </div>
+  
+  </div>
+
+  <div class="weather">
+
+    <div>
+
+      <div *ngIf="meters.data.current.weather.ic == '04d'">
+        <img src="assets/imgs/04d.png" style="height: 7rem;">
+        <p class="desc"> <strong>Broken Clouds</strong> </p>
+      </div>
+
+      <div *ngIf="meters.data.current.weather.ic == '01d'">
+          <img src="assets/imgs/01d.png" style="height: 7rem;">
+          <p><strong>Clear Sky</strong> Clear Sky</p>
+      </div>
+
+      <div *ngIf="meters.data.current.weather.ic == '01n'">
+          <img src="assets/imgs/01n.png" style="height: 7rem;">
+          <p> Clear Sky</p>
+      </div>
+
+      <div *ngIf="meters.data.current.weather.ic == '02d'">
+          <img src="assets/imgs/02d.png" style="height: 7rem;">
+          <p> Few Clouds</p>
+      </div>
+
+      <div *ngIf="meters.data.current.weather.ic == '02n'">
+          <img src="assets/imgs/02n.png" style="height: 7rem;">
+          <p> Few Clouds</p>
+      </div>
+
+      <div *ngIf="meters.data.current.weather.ic == '03d'">
+          <img src="assets/imgs/03d.png" style="height: 7rem;">
+          <p> Scattered Clouds</p>
+      </div>
+
+      <div *ngIf="meters.data.current.weather.ic == '09d'">
+          <img src="assets/imgs/09d.png" style="height: 7rem;">
+          <p> Shower Rain</p>
+      </div>
+
+      <div *ngIf="meters.data.current.weather.ic == '10d'">
+          <img src="assets/imgs/10d.png" style="height: 7rem;">
+          <p> Rainy</p>
+      </div>
+
+    </div>
+
+    <div class="other-weather">
+      
+      <div class="temperature">
+          <img src="assets/imgs/temperature.png" style="height: 4rem;">
+          <p class="value"><strong>{{meters.data.current.weather.tp}}&#8451;</strong></p>
+
+          <img src="assets/imgs/humidity.png" style="height: 4rem;">
+          <p class="value"><strong>{{meters.data.current.weather.hu}}g/m3</strong></p>
+      </div>
+
+      
+
+    </div>
+  
+  </div>
+
+</div>
+
+
+</ion-content>
